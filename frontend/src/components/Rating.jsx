@@ -31,23 +31,24 @@ const Rating = () => {
       // Assuming the server sends back data
       const responseData = response.data;
   
-      // Save the relevant information in local storage
-      const breweryData = {
-        breweryId: id,
+      // Retrieve existing brewery data from local storage
+      const existingBreweryData = JSON.parse(localStorage.getItem('breweryData')) || {};
+  
+      // Update or add the new rating and review for the current brewery ID
+      existingBreweryData[id] = {
         rating: responseData.rating,
         review: responseData.review,
       };
   
-      // Convert the breweryData object to a string before storing it
-      localStorage.setItem('breweryData', JSON.stringify(breweryData));
+      // Save the updated breweryData object to local storage
+      localStorage.setItem('breweryData', JSON.stringify(existingBreweryData));
   
-      console.log(responseData);
-      console.log(breweryData)
       navigate(`/home/brewery/${id}`);
     } catch (error) {
       console.error('Error:', error);
     }
   };
+  
   
 
   return (

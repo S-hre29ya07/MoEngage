@@ -18,13 +18,14 @@ const BreweryDetail = () => {
       .catch((error) => {
         console.error('Error fetching brewery data:', error);
       });
-
+  
     // Retrieve rating and review from local storage based on breweryId
-    const breweryData = JSON.parse(localStorage.getItem('breweryData'));
-    if (breweryData && breweryData.breweryId === id) {
-      setReviews([{ rating: breweryData.rating, review: breweryData.review }]);
+    const breweryData = JSON.parse(localStorage.getItem('breweryData')) || {};
+    if (breweryData[id]) {
+      setReviews([{ rating: breweryData[id].rating, review: breweryData[id].review }]);
     }
   }, [id]);
+  
 
   if (!brewery) {
     return <div className="mt-8 text-2xl text-center text-yellow-700">Loading...</div>;
