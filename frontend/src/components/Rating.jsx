@@ -22,7 +22,7 @@ const Rating = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post(`http://localhost:3001/home/brewery/${id}/rating`, {
+      const response = await axios.post(`https://moengage-server.onrender.com/home/brewery/${id}/rating`, {
         breweryId: id,
         rating,
         review,
