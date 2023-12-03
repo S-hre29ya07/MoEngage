@@ -40,6 +40,10 @@ app.post('/', (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Moengage");
+});
+
 app.listen(3001, () => {
   console.log('Server is running');
 });
